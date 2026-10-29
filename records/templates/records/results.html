@@ -1,0 +1,53 @@
+{% extends "records/base.html" %}
+
+{% block title %}Course Results{% endblock %}
+
+{% block content %}
+<h2>Results by Course</h2>
+
+{% for course in courses %}
+<div class="card mb-4 shadow-sm">
+    <div class="card-header bg-primary text-white">
+        {{ course.code }} — {{ course.title }}
+    </div>
+
+    <div class="table-responsive">
+    <table class="table table-striped mb-0">
+        <thead>
+            <tr>
+                <th>Student Number</th>
+                <th>Student Name</th>
+                <th>Score</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for enrollment in course.enrollments.all %}
+            <tr>
+                <td>{{ enrollment.student.student_number }}</td>
+                <td>{{ enrollment.student.user.get_full_name }}</td>
+                <td>
+                    {% if enrollment.result %}
+                        {{ enrollment.result.score }}%
+                    {% else %}
+                        Not yet graded
+                    {% endif %}
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-outline-primary"
+                       href="{% url 'record_result' enrollment.id %}">
+                        Enter / Edit
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No students enrolled.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

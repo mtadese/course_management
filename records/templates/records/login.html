@@ -1,0 +1,41 @@
+{% extends "records/base.html" %}
+
+{% block title %}Student Login{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm mx-auto" style="max-width: 460px;">
+    <div class="card-body p-4">
+        <h2>Student Login</h2>
+        <p class="text-muted">
+            Sign in with your username or student number.
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
+            {% for field in form %}
+                <div class="mb-3">
+                    <label class="form-label" for="{{ field.id_for_label }}">
+                        {{ field.label }}
+                    </label>
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <div class="text-danger small">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <button class="btn btn-primary w-100" type="submit">
+                Login
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+document.querySelectorAll("input").forEach((field) => {
+    field.classList.add("form-control");
+});
+</script>
+{% endblock %}

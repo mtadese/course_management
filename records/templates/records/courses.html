@@ -1,0 +1,24 @@
+{% extends "records/base.html" %}
+
+{% block title %}Courses{% endblock %}
+
+{% block content %}
+<h2>Available Courses</h2>
+
+<div class="row g-3">
+    {% for course in courses %}
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <span class="badge bg-primary">{{ course.code }}</span>
+                <h5 class="mt-2">{{ course.title }}</h5>
+                <p>{{ course.description|default:"No description available." }}</p>
+                <p><strong>Credits:</strong> {{ course.credits }}</p>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>No courses are currently available.</p>
+    {% endfor %}
+</div>
+{% endblock %}
