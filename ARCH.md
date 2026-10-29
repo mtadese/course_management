@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 # course_management
 =======
+=======
+>>>>>>> 8428495 (cse-mgt-v1)
 # Course Management Application using Django
 
 ## 1. Project Overview
@@ -152,4 +155,7 @@ course_management/
 
 
 
+<<<<<<< HEAD
 >>>>>>> 512550e (cse-mgt-v1)
+=======
+>>>>>>> 8428495 (cse-mgt-v1)
